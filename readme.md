@@ -1,4 +1,6 @@
-### [Initialisation du projet demo](https://start.spring.io/)
+### 05 - Initialisation du projet Spring Boot
+
+[Initialisation du projet demo](https://start.spring.io/)
 
 ![](./img/spring-initializr.png)
 
@@ -12,6 +14,7 @@ Exécuter le projet : `mvnw spring-boot:run`
 
 Et voir le résultat sur http://localhost:8080/
 
+### 
 
 
 
