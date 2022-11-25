@@ -2,22 +2,23 @@ package com.mycompany.invoise;
 
 import java.util.Scanner;
 
-import com.mycompany.invoise.entity.Invoice;
-import com.mycompany.invoise.service.InvoiceService;
+import com.mycompany.invoise.controller.InvoiceController;
+import com.mycompany.invoise.controller.InvoiceControllerMichel;
 
 public class App {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner sc = new Scanner(System.in);
-		
-		System.out.println("Name of the custumer please ?");
-		String customerName = sc.nextLine();
-		Invoice invoice = new Invoice();
-		invoice.setCustomerName(customerName);
-		InvoiceService invoiceService = new InvoiceService();
-		invoiceService.createInvoice(invoice);
-		
+		System.out.println("Quelle est votre configuration (1 ou 2) ?");
+		int configuration = sc.nextInt();
+		if (configuration == 1) {
+			InvoiceController invoiceController = new InvoiceController();
+			invoiceController.createInvoiceUsingConsole();
+		} else if (configuration == 2) {
+			InvoiceControllerMichel invoiceController = new InvoiceControllerMichel();
+			invoiceController.createInvoiceUsingWebForm();
+		}
 		sc.close();
 
 	}
