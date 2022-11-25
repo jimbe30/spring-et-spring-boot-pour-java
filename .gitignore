@@ -1,0 +1,29 @@
+*.DS_Store
+**/target
+**/bin
+**/.settings
+**/.classpath
+**/.project
+**/*.class
+
+**/mvnw*
+**/.mvn
+
+
+**/*.jar
+**/*.war
+**/*.ear
+**/*.zip
+
+**/hs_err_pid*
+
+### STS ###
+**/.apt_generated
+**/.factorypath
+**/.springBeans
+**/.sts4-cache
+
+### VS Code ###
+**/.vscode/
+
+**/HELP.md
