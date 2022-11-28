@@ -3,13 +3,17 @@ package com.mycompany.invoise.service;
 import com.mycompany.invoise.entity.Invoice;
 import com.mycompany.invoise.repository.InvoiceRepositoryInterface;
 
-public class InvoiceServiceMichel implements InvoiceServiceInterface {
+public class InvoiceServicePrefix implements InvoiceServiceInterface {
 	
 	private static long lastNumber = 112L;
 	
 	private InvoiceRepositoryInterface invoiceRepository;
 	
-	public InvoiceServiceMichel(InvoiceRepositoryInterface invoiceRepository) {
+	public InvoiceServicePrefix() {
+		super();
+	}
+	
+	public InvoiceServicePrefix(InvoiceRepositoryInterface invoiceRepository) {
 		super();
 		this.invoiceRepository = invoiceRepository;
 	}

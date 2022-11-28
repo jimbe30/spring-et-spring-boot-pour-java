@@ -5,13 +5,13 @@ import java.util.List;
 
 import com.mycompany.invoise.entity.Invoice;
 
-public class InvoiceRepository implements InvoiceRepositoryInterface {
+public class InvoiceRepositoryMemory implements InvoiceRepositoryInterface {
 	
 	private static List<Invoice> invoices = new ArrayList<>();
 	
 	public void create(Invoice invoice) {
 		invoices.add(invoice);
-		System.out.println("Invoice added with number " + invoice.getNumber() + " for " + invoice.getCustomerName());
+		System.out.println("Invoice added in list with number " + invoice.getNumber() + " for " + invoice.getCustomerName());
 	}
 
 }

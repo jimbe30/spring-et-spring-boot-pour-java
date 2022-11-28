@@ -3,11 +3,15 @@ package com.mycompany.invoise.controller;
 import com.mycompany.invoise.entity.Invoice;
 import com.mycompany.invoise.service.InvoiceServiceInterface;
 
-public class InvoiceControllerMichel implements InvoiceControllerInterface {
+public class InvoiceControllerWeb implements InvoiceControllerInterface {
 	
 	InvoiceServiceInterface invoiceService;
+	
+	public InvoiceControllerWeb() {
+		super();
+	}
 
-	public InvoiceControllerMichel(InvoiceServiceInterface invoiceService) {
+	public InvoiceControllerWeb(InvoiceServiceInterface invoiceService) {
 		super();
 		this.invoiceService = invoiceService;
 	}

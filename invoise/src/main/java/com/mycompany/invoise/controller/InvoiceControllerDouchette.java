@@ -1,16 +1,17 @@
 package com.mycompany.invoise.controller;
 
-import java.util.Scanner;
-
 import com.mycompany.invoise.entity.Invoice;
 import com.mycompany.invoise.service.InvoiceServiceInterface;
 
-public class InvoiceController implements InvoiceControllerInterface {
+public class InvoiceControllerDouchette implements InvoiceControllerInterface {
 	
-	private InvoiceServiceInterface invoiceService;
+	InvoiceServiceInterface invoiceService;
+	
+	public InvoiceControllerDouchette() {
+		super();
+	}
 
-
-	public InvoiceController(InvoiceServiceInterface invoiceService) {
+	public InvoiceControllerDouchette(InvoiceServiceInterface invoiceService) {
 		super();
 		this.invoiceService = invoiceService;
 	}
@@ -20,14 +21,15 @@ public class InvoiceController implements InvoiceControllerInterface {
 	}
 
 	public void createInvoice() {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Name of the custumer please ?");
-		String customerName = sc.nextLine();
+
+		String customerName = "Magic knighte";
+		System.out.println("Le client scanné par la douchette s'appelle " + customerName);
+
 		Invoice invoice = new Invoice();
 		invoice.setCustomerName(customerName);
+
 		invoiceService.createInvoice(invoice);
 
-		sc.close();
 
 	}
 
