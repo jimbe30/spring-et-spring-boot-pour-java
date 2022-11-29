@@ -6,6 +6,8 @@
 
     <bean class="com.mycompany.invoise.service.InvoiceServicePrefix" id="invoiceService">
     	<property name="invoiceRepository" ref="invoiceRepository"/>
+    	<property name="lastNumber" value="99"/>
+    	<property name="prefix" value="PREF"/>
     </bean>
     
     <bean class="com.mycompany.invoise.controller.InvoiceControllerWeb">
@@ -14,5 +16,4 @@
     
     <bean class="com.mycompany.invoise.repository.InvoiceRepositoryDatabase" id="invoiceRepository"/>
     
-
 </beans>

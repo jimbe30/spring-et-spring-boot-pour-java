@@ -24,5 +24,19 @@ Les interfaces définissent de manière abstraite la façon dont les composants 
 
 Un composant central a pour responsabilité l'instanciation des objets concrets et leur injection dans les objets qui en ont besoin : c'est l'injection de dépendances.
 
+### 14 - Affectation de valeur à un composant Spring
+
+![](./img/applicationContext_01.png)
+
+L'attribut `value` de la balise `<property>` permet d'affecter une valeur à un attribut de bean géré par le conteneur Spring.
+
+Les types d'objets que Spring est capable de convertir automatiquement sont :
+- les types primitifs (int, long, ...)
+- String
+- Properties
+- URL
+- File
+- Class
+
 
 
