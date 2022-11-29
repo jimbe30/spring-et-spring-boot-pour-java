@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-    http://www.springframework.org/schema/beans/spring-beans.xsd">
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       default-autowire="byName" >
 
-    <bean class="com.mycompany.invoise.service.InvoiceServicePrefix" id="invoiceService">
-    	<property name="invoiceRepository" ref="invoiceRepository"/>
+    <bean class="com.mycompany.invoise.service.InvoiceServicePrefix" id="invoiceService" autowire="byType">
     	<property name="lastNumber" value="99"/>
     	<property name="prefix" value="PREF"/>
     </bean>
     
-    <bean class="com.mycompany.invoise.controller.InvoiceControllerWeb">
-    	<property name="invoiceService" ref="invoiceService"/>
-    </bean>
+    <bean class="com.mycompany.invoise.controller.InvoiceControllerWeb"/>
     
-    <bean class="com.mycompany.invoise.repository.InvoiceRepositoryDatabase" id="invoiceRepository"/>
+    <bean class="com.mycompany.invoise.repository.InvoiceRepositoryDatabase"/>
     
 </beans>

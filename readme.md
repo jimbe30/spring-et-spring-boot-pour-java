@@ -38,5 +38,14 @@ Les types d'objets que Spring est capable de convertir automatiquement sont :
 - File
 - Class
 
+### 15 - Injection automatique par nom ou par type
+
+![](./img/applicationContext_02.png)
+
+On peut utiliser l'attribut `default-autowire` de la balise `<beans>` ou  l'attribut `autowire` de la balise `<bean>` pour injecter automatiquement les références de beans en tant que dépendances sans avoir à les écrire dans le fichier de configuration.
+
+Les valeurs courantes de ces attributs sont `byName`ou `byType`
+
+
 
 
