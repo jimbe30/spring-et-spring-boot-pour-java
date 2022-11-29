@@ -46,6 +46,26 @@ On peut utiliser l'attribut `default-autowire` de la balise `<beans>` ou  l'attr
 
 Les valeurs courantes de ces attributs sont `byName`ou `byType`
 
+### 17 - Affectation de propriété par annotation @Value
 
+On peut affecter aux attributs de beans une valeur configurée dans un fichier de propriétés
+
+`applicationContext.xml`
+![](./img/applicationContext_03.png)
+
+Fichier `application.properties`
+```properties
+invoice.prefix = PREF
+invoice.lastNumber = 184
+```
+Fichier java
+```java
+public class InvoiceServicePrefix implements InvoiceServiceInterface {	
+	@Value("${invoice.lastNumber}")
+	private long lastNumber;	
+	@Value("${invoice.prefix}")
+	private String prefix;
+	
+```
 
 

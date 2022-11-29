@@ -1,11 +1,16 @@
 package com.mycompany.invoise.service;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import com.mycompany.invoise.entity.Invoice;
 import com.mycompany.invoise.repository.InvoiceRepositoryInterface;
 
 public class InvoiceServicePrefix implements InvoiceServiceInterface {
 	
+	@Value("${invoice.lastNumber}")
 	private long lastNumber;
+	
+	@Value("${invoice.prefix}")
 	private String prefix;
 	
 	private InvoiceRepositoryInterface invoiceRepository;
