@@ -1,5 +1,6 @@
 package com.mycompany.invoise.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.mycompany.invoise.entity.Invoice;
@@ -13,6 +14,7 @@ public class InvoiceServicePrefix implements InvoiceServiceInterface {
 	@Value("${invoice.prefix}")
 	private String prefix;
 	
+	@Autowired
 	private InvoiceRepositoryInterface invoiceRepository;
 	
 	public InvoiceServicePrefix() {

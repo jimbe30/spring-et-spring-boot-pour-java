@@ -69,3 +69,46 @@ public class InvoiceServicePrefix implements InvoiceServiceInterface {
 ```
 
 
+
+### 20 - Se passer du fichier XML
+
+Grâce aux classes de configuration, il est possible de déplacer toute la config XML dans une classe java annotée `@Configuration`
+
+Les beans sont instanciés par cette classe
+
+```java
+@Configuration
+@ComponentScan("com.mycompany.invoise")
+@PropertySource("classpath:application.properties")
+public class AppConfig {
+	@Bean
+	InvoiceControllerInterface invoiceController() {
+		return new InvoiceControllerWeb();
+	}
+	@Bean
+	InvoiceServiceInterface invoiceService() {
+		return new InvoiceServicePrefix();
+	}
+	@Bean
+	InvoiceRepositoryInterface invoiceRepository() {
+		return new InvoiceRepositoryDatabase();
+	}
+}
+```
+
+Le contexte Spring est alors donné par 
+
+```java
+ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+```
+
+Les dépendances sont injectées par l'annotation `Autowired` dans les beans qui en ont besoin
+
+```java
+public class InvoiceServicePrefix implements InvoiceServiceInterface {
+	...	
+	@Autowired
+	private InvoiceRepositoryInterface invoiceRepository;
+    ...
+```
+

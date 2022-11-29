@@ -1,10 +1,13 @@
 package com.mycompany.invoise.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.mycompany.invoise.entity.Invoice;
 import com.mycompany.invoise.service.InvoiceServiceInterface;
 
 public class InvoiceControllerWeb implements InvoiceControllerInterface {
 	
+	@Autowired
 	InvoiceServiceInterface invoiceService;
 	
 	public InvoiceControllerWeb() {
