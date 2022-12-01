@@ -186,3 +186,22 @@ public class App {
 }
 ```
 
+
+
+### 24 - Spring boot - Déployer l'application
+
+Spring Boot fournit le plugin `spring-boot-maven-plugin` qui permet de créer un jar exécutable lors de la phase package, avec toutes les dépendances. 
+
+Fichier  `pom.xml`
+
+```xml
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+```
+
