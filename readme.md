@@ -205,3 +205,28 @@ Fichier  `pom.xml`
 	</build>
 ```
 
+
+
+### 26 - Spring boot web
+
+Spring Boot fournit le starter `spring-boot-starter-web` qui permet de créer une application web avec un serveur Tomcat embarqué.
+
+`pom.xml`
+
+```xml
+	<dependencies>
+		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>    
+	</dependencies>
+```
+
+
+
+Par défaut, Spring Boot cherche dans le répertoire `classpath:/static` le contenu web statique (pages HTML) à servir aux utilisateurs :
+
+- Le port par défaut est 8080
+- Le nom de contexte est vide
+- La ressource web par défaut est `index.html`
+

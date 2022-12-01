@@ -7,7 +7,7 @@ public class InvoiceRepositoryDatabase implements InvoiceRepositoryInterface {
 	
 	public void create(Invoice invoice) {
 
-		System.out.println("Invoice numéro " + invoice.getNumber() + " ajoutée en BdD pour le client " + invoice.getCustomerName());
+		System.out.println("Invoice numÃ©ro " + invoice.getNumber() + " ajoutÃ©e en BdD pour le client " + invoice.getCustomerName());
 	}
 
 }

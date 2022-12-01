@@ -26,7 +26,7 @@ public class InvoiceControllerDouchette implements InvoiceControllerInterface {
 	public void createInvoice() {
 
 		String customerName = "Magic knighte";
-		System.out.println("Le client scanné par la douchette s'appelle " + customerName);
+		System.out.println("Le client scannÃ© par la douchette s'appelle " + customerName);
 
 		Invoice invoice = new Invoice();
 		invoice.setCustomerName(customerName);
