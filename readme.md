@@ -155,3 +155,34 @@ public class AppConfigBeanFactory {
 }
 ```
 
+
+
+### 22 - Spring boot - @SpringBootApplication
+
+Spring Boot nécessite au minimum la dépendance suivante dans le fichier `pom.xml`
+
+```xml
+		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+            <version>2.2.4.RELEASE</version>
+        </dependency>
+```
+
+
+
+Dans la classe principale `App`, l'annotation `@SpringBootApplication` combine (et remplace donc) différentes annotations telles que `@configuration`, `@ComponentScan` et `@PropertySource("classpath:application.properties")` 
+
+La méthode statique `run()` de la classe `SpringApplication` renvoie un objet `ApplicationContext`
+
+```java
+@SpringBootApplication
+public class App {
+	public static void main(String[] args) {		
+		ApplicationContext context = SpringApplication.run(App.class);
+		InvoiceControllerInterface invoiceController = context.getBean(InvoiceControllerInterface.class);
+		invoiceController.createInvoice();		
+	}
+}
+```
+
