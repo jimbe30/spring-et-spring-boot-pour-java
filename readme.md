@@ -230,3 +230,47 @@ Par défaut, Spring Boot cherche dans le répertoire `classpath:/static` le cont
 - Le nom de contexte est vide
 - La ressource web par défaut est `index.html`
 
+
+
+### 27 - Spring auto configuration
+
+L'annotation `@SpringBootApplication` inclut également l'annotation `@EnableAutoConfiguration` .
+
+Elle indique à Spring de chercher dans les librairies du projet les classes de configuration qui fournissent les composants et valeurs de propriétés par défaut.
+
+Ces valeurs par défaut  peuvent être surchargées par configuration.
+
+Les propriétés concernées sont listées ici : https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html
+
+ `application.properties`
+
+```properties
+server.port = 80
+server.servlet.context-path = /invoice
+```
+
+
+
+Pour remplacer le serveur web, il faut exclure la dépendance vers celui par défaut et rajouter celle vers celui voulu
+
+`pom.xml`
+
+```xml
+	<dependencies>
+		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+            	<exclusion>
+            		<groupId>org.springframework.boot</groupId>
+            		<artifactId>spring-boot-starter-tomcat</artifactId>
+            	</exclusion>
+            </exclusions>
+		</dependency>		
+		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-undertow</artifactId>
+		</dependency>       
+	</dependencies>
+```
+
