@@ -112,3 +112,46 @@ public class InvoiceServicePrefix implements InvoiceServiceInterface {
     ...
 ```
 
+
+
+### 21 - Classes de configuration plus en détail
+
+Il est possible de placer l'annotation `@configuration` sur n'importe quelle classe, y compris celle qui contient la méthode `main()`
+
+Et d'avoir autant de classes de configuration qu'on le souhaite
+
+```java
+@Configuration
+@ComponentScan("com.mycompany.invoise")
+public class App {
+	public static void main(String[] args) {		
+		@SuppressWarnings("resource")
+		ApplicationContext context = new AnnotationConfigApplicationContext(App.class);
+		InvoiceControllerInterface invoiceController = context.getBean(InvoiceControllerInterface.class);
+		invoiceController.createInvoice();		
+	} 
+}
+
+
+@Configuration
+@PropertySource("classpath:application.properties")
+public class AppConfigPropertySource {}
+
+
+@Configuration
+public class AppConfigBeanFactory {	
+	@Bean
+	InvoiceControllerInterface invoiceController() {
+		return new InvoiceControllerWeb();
+	}	
+	@Bean
+	InvoiceServiceInterface invoiceService() {
+		return new InvoiceServicePrefix();
+	}	
+	@Bean
+	InvoiceRepositoryInterface invoiceRepository() {
+		return new InvoiceRepositoryDatabase();
+	}
+}
+```
+
