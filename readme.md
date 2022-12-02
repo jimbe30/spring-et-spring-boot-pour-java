@@ -274,3 +274,55 @@ Pour remplacer le serveur web, il faut exclure la dépendance vers celui par dé
 	</dependencies>
 ```
 
+
+
+### 30 - Spring MVC - contrôleur frontal `DispatcherServlet` et contrôleurs `@Controller`
+
+Spring MVC est un framework web (structure de composants logiciels sous-jacente à une application et qui définit son architecture).
+
+> Doc de référence : https://docs.spring.io/spring-framework/docs/current/reference/html/web.html
+
+
+
+Il fait appel au contrôleur central `DispatcherServlet` qui intercepte toutes les requêtes HTTP qui lui sont destinées :
+
+- Avec Spring Boot, `DispatcherServlet` est initialisé grâce à l'auto configuration (classe `DispatcherServletAutoConfiguration`) 
+
+- Dans une webapp standard au niveau servlet 3 et +, il l'est en étendant la classe `AbstractDispatcherServletInitializer`  ou `AbstractAnnotationConfigDispatcherServletInitializer`
+
+
+
+Par défaut le chemin des requêtes interceptées est ` / ` : toutes les requêtes sont interceptées.
+
+Ce chemin est modifiable avec la propriété `spring.mvc.servlet.path`
+
+
+
+Le contrôleur frontal `DispatcherServlet` délègue le traitement des requêtes à des contrôleurs simples : ce sont les classes annotées `@Controller`
+
+Le choix du contrôleur et de la méthode à invoquer provient de la configuration du chemin via l'annotation `@RequestMapping`
+
+Exemple pour le chemin `/home` (càd l'URL http://localhost/invoice/home)
+
+```java
+@Controller
+public class InvoiceControllerWeb implements InvoiceControllerInterface {	
+	...
+	@RequestMapping("/home")
+	public String displayHome() {
+		System.out.println("Invocation de InvoiceControllerWeb.displayHome()");
+		return "";
+	}
+...
+```
+
+
+
+Une fois le traitement effectué, le contrôleur frontal renvoie ou redirige l'utilisateur vers une vue  
+
+
+
+
+
+
+
