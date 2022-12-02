@@ -1,7 +1,12 @@
 package com.mycompany.invoise.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mycompany.invoise.entity.Invoice;
@@ -23,9 +28,18 @@ public class InvoiceControllerWeb implements InvoiceControllerInterface {
 	}
 	
 	@RequestMapping("/home")
-	public String displayHome() {
+	public String displayHome(HttpServletRequest request) {
 		System.out.println("Invocation de InvoiceControllerWeb.displayHome()");
-		return "";
+		request.setAttribute("invoices", invoiceService.getInvoiceList());
+		return "index";
+	}
+	
+	@RequestMapping("/index")
+	@ModelAttribute("invoices")
+	public List<Invoice> index() {
+		System.out.println("Invocation de InvoiceControllerWeb.index()");
+		List<Invoice> invoiceList = invoiceService.getInvoiceList();
+		return invoiceList;
 	}
 
 	public void setInvoiceService(InvoiceServiceInterface invoiceService) {

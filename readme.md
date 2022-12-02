@@ -322,6 +322,88 @@ Une fois le traitement effectué, le contrôleur frontal renvoie ou redirige l'u
 
 
 
+### 32 - Spring MVC - vues et modèle
+
+2 façons de présenter des vues dont le contenu est dynamique :
+
+- soit générer le code HTML directement sur le serveur et l'envoyer au client (JSP, Thymeleaf)
+- soit envoyer une page HTML statique et laisser le client remplir le contenu dynamique avec javascript et des requêtes ajax
+
+
+
+#### Vue renvoyée par le contrôleur 
+
+Lorsque le retour d'une méthode `@RequestMapping` du contrôleur est de type `String`, le framework cherche une vue du même nom (par défaut avec l'extension .html).
+
+Il est alors courant de valoriser les données du modèle via l'objet `HttpServletRequest` passé en paramètre. 
+
+```java
+	@RequestMapping("/home")
+	public String displayHome(HttpServletRequest request) {
+		System.out.println("Invocation de InvoiceControllerWeb.displayHome()");
+		request.setAttribute("invoices", invoiceService.getInvoiceList());
+		return "index"; // nom de la vue recherchée par Spring avec extension .html
+	}
+```
+
+
+
+Dans le cas où le retour n'est pas de type `String`, Spring recherche une vue du même nom que le chemin donné dans l'annotation `@RequestMapping`
+
+L'objet en retour peut être ajouté au modèle via l'annotation `@ModelAttribute`
+
+```java
+	@RequestMapping("/index")   // nom de la vue recherchée par Spring 
+	@ModelAttribute("invoices")
+	public List<Invoice> index() {
+		System.out.println("Invocation de InvoiceControllerWeb.index()");
+		List<Invoice> invoiceList = invoiceService.getInvoiceList();
+		return invoiceList;
+	}
+```
+
+
+
+Les données ajoutées au modèle par les méthodes `@RequestMapping` du contrôleur sont ensuite disponibles pour la vue renvoyée 
+
+
+
+#### Thymeleaf pour générer des vues côté serveur
+
+C'est un moteur de template qui permet d'ajouter à une page HTML statique du contenu dynamique grâce à des balises et attributs personnalisés :
+
+- Par défaut, Spring Boot cherche les fichiers associés dans le répertoire `classpath:/templates/`
+
+- Le namespace `th` doit être ajouté en entête du fichier `html`
+
+  ```html
+  <html lang="en" xmlns:th="http://www.thymeleaf.org">
+  ```
+
+- Et la dépendance correspondante dans le `pom.xml` :
+
+  ```xml
+  		<dependency>
+  			<groupId>org.springframework.boot</groupId>
+  			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+  		</dependency>
+  ```
+
+
+
+Thymeleaf permet un affichage dynamique des données fournies au modèle par le contrôleur
+
+Exemple dans `classpath:/templates/index.html`
+
+```html
+    <table>
+    	<tr th:each="invoice: ${invoices}">
+    		<td><span th:text="${invoice.number}"></span></td>
+    		<td><span th:text="${invoice.customerName}"></span></td>
+    	</tr>    
+    </table>
+```
+
 
 
 
