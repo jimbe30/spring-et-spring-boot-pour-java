@@ -1,5 +1,7 @@
 package com.mycompany.invoise.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -49,5 +51,10 @@ public class InvoiceServicePrefix implements InvoiceServiceInterface {
 
 	public void setInvoiceRepository(InvoiceRepositoryInterface invoiceRepository) {
 		this.invoiceRepository = invoiceRepository;
+	}
+
+	@Override
+	public List<Invoice> getInvoiceList() {
+		return invoiceRepository.list();
 	}
 }
