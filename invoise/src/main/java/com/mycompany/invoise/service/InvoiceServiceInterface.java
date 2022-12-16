@@ -9,4 +9,5 @@ public interface InvoiceServiceInterface {
 	
 	void createInvoice(Invoice invoice);
 	List<Invoice> getInvoiceList();
+	Invoice getInvoice(String invoiceNumber);
 }

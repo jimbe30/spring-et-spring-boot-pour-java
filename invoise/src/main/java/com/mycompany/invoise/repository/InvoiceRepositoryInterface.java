@@ -8,5 +8,6 @@ public interface InvoiceRepositoryInterface {
 	
 	void create(Invoice invoice);
 	List<Invoice> list();
+	Invoice getById(String invoiceNumber);
 
 }

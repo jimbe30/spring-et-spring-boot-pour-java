@@ -36,4 +36,10 @@ public class InvoiceServiceNumber implements InvoiceServiceInterface {
 	public List<Invoice> getInvoiceList() {
 		return invoiceRepository.list();
 	}
+
+	@Override
+	public Invoice getInvoice(String invoiceNumber) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

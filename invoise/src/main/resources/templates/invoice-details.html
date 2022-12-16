@@ -6,23 +6,28 @@
     
     <style type="text/css">
     	span {
-    		padding: 10px 20px 0 0;
+    		padding: 20px;
     	}
     </style>
 
 </head>
 <body>
     <h3>Gestion des factures</h3>
-    <h4>Actions possibles :</h4>
-    <ul>
-    	<li><a href="">Ajout de facture</a></li>    
-    </ul>
-    
+    <h4>Détails d'une facture</h4>
+
     <table>
-    	<tr th:each="invoice: ${invoices}">
-    		<td><a th:href="@{/invoice/{number} (number=${invoice.number})}" th:text="${invoice.number}"></a></td>
+    	<tr>
+    		<td>Number</td>
+    		<td><span th:text="${invoice.number}"></span></td>
+    	</tr> 
+    	<tr>
+    		<td>Customer Name</td>
     		<td><span th:text="${invoice.customerName}"></span></td>
     	</tr>    
+    	<tr>
+    		<td>Order Number</td>
+    		<td><span th:text="${invoice.orderNumber}"></span></td>
+    	</tr>       
     </table>
     
 </body>

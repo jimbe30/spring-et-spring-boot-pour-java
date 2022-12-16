@@ -19,4 +19,10 @@ public class InvoiceRepositoryMemory implements InvoiceRepositoryInterface {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
+	public Invoice getById(String invoiceNumber) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

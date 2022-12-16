@@ -28,4 +28,13 @@ public class InvoiceRepositoryDatabase implements InvoiceRepositoryInterface {
 		);
 	}
 
+	@Override
+	public Invoice getById(String invoiceNumber) {
+		Invoice invoice = new Invoice();
+		invoice.setNumber(invoiceNumber);
+		invoice.setCustomerName("Invoice returned after calling getInvoice() method");
+		invoice.setOrderNumber("N_002");
+		return invoice;
+	}
+
 }

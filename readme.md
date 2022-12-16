@@ -8,7 +8,7 @@ Générer le projet et le dézipper dans le répertoire Git principal qui a ét�
 
 Puis importer le projet maven dans eclipse (import Git -> Smart Import)
 
-Créer la page d'accueil `index.html`dans `/src/main/resources/static`
+Créer la page d'accueil `index.html` dans `/src/main/resources/static`
 
 Exécuter le projet : `mvnw spring-boot:run`
 
@@ -44,21 +44,25 @@ Les types d'objets que Spring est capable de convertir automatiquement sont :
 
 On peut utiliser l'attribut `default-autowire` de la balise `<beans>` ou  l'attribut `autowire` de la balise `<bean>` pour injecter automatiquement les références de beans en tant que dépendances sans avoir à les écrire dans le fichier de configuration.
 
-Les valeurs courantes de ces attributs sont `byName`ou `byType`
+Les valeurs courantes de ces attributs sont `byName` ou `byType`
 
 ### 17 - Affectation de propriété par annotation @Value
 
 On peut affecter aux attributs de beans une valeur configurée dans un fichier de propriétés
 
 `applicationContext.xml`
+
 ![](./img/applicationContext_03.png)
 
 Fichier `application.properties`
+
 ```properties
 invoice.prefix = PREF
 invoice.lastNumber = 184
 ```
+
 Fichier java
+
 ```java
 public class InvoiceServicePrefix implements InvoiceServiceInterface {	
 	@Value("${invoice.lastNumber}")
@@ -67,7 +71,6 @@ public class InvoiceServicePrefix implements InvoiceServiceInterface {
 	private String prefix;
 	
 ```
-
 
 
 ### 20 - Se passer du fichier XML
@@ -405,6 +408,44 @@ Exemple dans `classpath:/templates/index.html`
 ```
 
 
+### 34 - Spring MVC - `Model`, `ModelAndView` et paramètres d'URL
 
 
+#### Thymeleaf - Syntaxe d'URL avec paramètre dans le chemin
 
+Une URL qui commence par un ` / ` est relative au contexte de la page en cours.
+Exemple : si le chemin de contexte est /invoice, alors l'URL ci-dessous envoie la requête vers /localhost/invoice/{number}
+Où {number} est un paramètre valorisé ensuite  
+
+```html
+	<a th:href="@{/{number} (number=${invoice.number})}" th:text="${invoice.number}"></a>
+```
+
+
+#### Spring - Lecture du paramètre d'URL et définition explicite de la vue et du modèle
+
+
+- Soit on utilise un paramètre `Model` en paramètre de la méthode du `@Controller` et on renvoie le nom de la vue
+
+```java
+	@RequestMapping("/index")
+	public String index(Model model) {
+		System.out.println("Invocation de InvoiceControllerWeb.index()");
+		List<Invoice> invoiceList = invoiceService.getInvoiceList();
+		model.addAttribute( "invoices", invoiceList);
+		return "index";
+	}
+```
+
+- Soit on renvoie un objet `ModelAndView` qui contient à la fois le nom de la vue et les attributs du modèle
+
+```java
+	@RequestMapping("/{id}")
+	public ModelAndView displayInvoice(@PathVariable("id") String invoiceNumber) {
+		System.out.println("Invocation de InvoiceControllerWeb.displayInvoice()");
+		Invoice invoice = invoiceService.getInvoice(invoiceNumber);
+		return new ModelAndView("invoice-details", "invoice", invoice);
+	}
+```
+
+L'annotation `@PathVariable("id")` permet de lire et de transférer la valeur du paramètre d'URL vers le paramètre correspondant dans la méthode 
